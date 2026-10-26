@@ -1,0 +1,125 @@
+[
+  {
+    "graph_id": "er_n1000_p01",
+    "nodes": 1000,
+    "edges": 49929,
+    "parameters": {
+      "type": "ER",
+      "n": 1000,
+      "p": 0.1,
+      "seed": 42,
+      "is_provisional": false
+    },
+    "generated_at": "2026-10-25T12:54:23.893158+00:00",
+    "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\synthetic\\er_n1000_p01\\edgelist.txt"
+  },
+  {
+    "graph_id": "er_n1000_p02",
+    "nodes": 1000,
+    "edges": 99888,
+    "parameters": {
+      "type": "ER",
+      "n": 1000,
+      "p": 0.2,
+      "seed": 43,
+      "is_provisional": false
+    },
+    "generated_at": "2026-10-25T12:54:24.180167+00:00",
+    "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\synthetic\\er_n1000_p02\\edgelist.txt"
+  },
+  {
+    "graph_id": "er_n1000_p03",
+    "nodes": 1000,
+    "edges": 149221,
+    "parameters": {
+      "type": "ER",
+      "n": 1000,
+      "p": 0.3,
+      "seed": 44,
+      "is_provisional": true
+    },
+    "generated_at": "2026-10-25T12:54:24.497280+00:00",
+    "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\synthetic\\er_n1000_p03\\edgelist.txt"
+  },
+  {
+    "graph_id": "ba_n1000_m4",
+    "nodes": 1000,
+    "edges": 3984,
+    "parameters": {
+      "type": "BA",
+      "n": 1000,
+      "m": 4,
+      "seed": 52
+    },
+    "generated_at": "2026-10-25T12:54:24.510645+00:00",
+    "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\synthetic\\ba_n1000_m4\\edgelist.txt"
+  },
+  {
+    "graph_id": "ba_n1000_m6",
+    "nodes": 1000,
+    "edges": 5964,
+    "parameters": {
+      "type": "BA",
+      "n": 1000,
+      "m": 6,
+      "seed": 53
+    },
+    "generated_at": "2026-10-25T12:54:24.526220+00:00",
+    "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\synthetic\\ba_n1000_m6\\edgelist.txt"
+  },
+  {
+    "graph_id": "ba_n1000_m8",
+    "nodes": 1000,
+    "edges": 7936,
+    "parameters": {
+      "type": "BA",
+      "n": 1000,
+      "m": 8,
+      "seed": 54
+    },
+    "generated_at": "2026-10-25T12:54:24.548523+00:00",
+    "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\synthetic\\ba_n1000_m8\\edgelist.txt"
+  },
+  {
+    "graph_id": "ws_n1000_k6",
+    "nodes": 1000,
+    "edges": 3000,
+    "parameters": {
+      "type": "WS",
+      "n": 1000,
+      "k": 6,
+      "p_rewire": 0.1,
+      "seed": 62
+    },
+    "generated_at": "2026-10-25T12:54:24.558611+00:00",
+    "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\synthetic\\ws_n1000_k6\\edgelist.txt"
+  },
+  {
+    "graph_id": "ws_n1000_k8",
+    "nodes": 1000,
+    "edges": 4000,
+    "parameters": {
+      "type": "WS",
+      "n": 1000,
+      "k": 8,
+      "p_rewire": 0.1,
+      "seed": 63
+    },
+    "generated_at": "2026-10-25T12:54:24.569274+00:00",
+    "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\synthetic\\ws_n1000_k8\\edgelist.txt"
+  },
+  {
+    "graph_id": "ws_n1000_k10",
+    "nodes": 1000,
+    "edges": 5000,
+    "parameters": {
+      "type": "WS",
+      "n": 1000,
+      "k": 10,
+      "p_rewire": 0.1,
+      "seed": 64
+    },
+    "generated_at": "2026-10-25T12:54:24.581258+00:00",
+    "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\synthetic\\ws_n1000_k10\\edgelist.txt"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "dataset_name": "email-Eu-core-temporal",
+  "total_raw_rows": 332334,
+  "missing_value_rows": 0,
+  "self_loop_rows": 0,
+  "duplicate_rows": 4998,
+  "clean_event_count": 327336,
+  "unique_nodes": 986,
+  "temporal_span": {
+    "t_min": 0,
+    "t_max": 69459254,
+    "span_seconds": 69459254
+  },
+  "duration_semantic": "instantaneous",
+  "assumptions": [
+    "Events represent instantaneous interaction points with no duration recorded in raw source."
+  ],
+  "is_valid": true
+}

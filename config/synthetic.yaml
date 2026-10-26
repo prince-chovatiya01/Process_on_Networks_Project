@@ -1,0 +1,30 @@
+# Synthetic Network Generation Configurations (SC452 Group 5)
+
+default_n: 1000
+seed_base: 42
+
+models:
+  erdos_renyi:
+    type: "ER"
+    n: 1000
+    parameters:
+      - { p: 0.1, id: "er_n1000_p01" }
+      - { p: 0.2, id: "er_n1000_p02" }
+      - { p: 0.3, id: "er_n1000_p03" }  # Note: p=0.3 provisional as per TA annotation
+  
+  barabasi_albert:
+    type: "BA"
+    n: 1000
+    parameters:
+      - { m: 4, id: "ba_n1000_m4" }
+      - { m: 6, id: "ba_n1000_m6" }
+      - { m: 8, id: "ba_n1000_m8" }
+  
+  watts_strogatz:
+    type: "WS"
+    n: 1000
+    p_rewire: 0.1
+    parameters:
+      - { k: 6, id: "ws_n1000_k6" }
+      - { k: 8, id: "ws_n1000_k8" }
+      - { k: 10, id: "ws_n1000_k10" }

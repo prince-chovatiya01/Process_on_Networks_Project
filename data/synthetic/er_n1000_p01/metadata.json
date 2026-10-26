@@ -1,0 +1,14 @@
+{
+  "graph_id": "er_n1000_p01",
+  "nodes": 1000,
+  "edges": 49929,
+  "parameters": {
+    "type": "ER",
+    "n": 1000,
+    "p": 0.1,
+    "seed": 42,
+    "is_provisional": false
+  },
+  "generated_at": "2026-10-25T12:54:23.893158+00:00",
+  "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\synthetic\\er_n1000_p01\\edgelist.txt"
+}

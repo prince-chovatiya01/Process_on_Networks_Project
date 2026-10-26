@@ -1,0 +1,22 @@
+{
+  "dataset_key": "sociopatterns_invs15",
+  "name": "SocioPatterns-InVS15",
+  "status": "DOWNLOADED",
+  "source_url": "http://www.sociopatterns.org/assets/data/workplace_InVS15_tij.dat.gz",
+  "resolved_url": "https://sociopatterns.org/assets/data/workplace_InVS15_tij.dat.gz",
+  "sha256": "339eb090d506d750f38a2c1ac6aca76c00c55b462f9dea325933d8b7bc260871",
+  "size_bytes": 241057,
+  "retrieved_at": "2026-10-25T12:55:11.944855+00:00",
+  "license": "Creative Commons Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)",
+  "duration_semantic": "interval",
+  "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\raw\\sociopatterns_invs15\\workplace_InVS15_tij.dat.gz",
+  "attempts_log": [
+    {
+      "url": "http://www.sociopatterns.org/assets/data/workplace_InVS15_tij.dat.gz",
+      "final_url": "https://sociopatterns.org/assets/data/workplace_InVS15_tij.dat.gz",
+      "attempt": 1,
+      "status": "SUCCESS"
+    }
+  ],
+  "error": null
+}

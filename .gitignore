@@ -1,0 +1,37 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing & cache
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+
+# Tools & downloaded executables
+tools/
+*.exe
+
+# LaTeX build artifacts (preserve main.pdf)
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.bbl
+paper/*.blg
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
+paper/.tectonic/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini

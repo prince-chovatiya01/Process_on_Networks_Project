@@ -1,0 +1,12 @@
+{
+  "dataset_key": "email_eu_core_temporal",
+  "name": "email-Eu-core-temporal",
+  "status": "VERIFIED_EXISTING",
+  "source_url": "https://snap.stanford.edu/data/email-Eu-core-temporal.txt.gz",
+  "sha256": "f6cc93249978e59d1aba111b55ea10ec553917419a3be1210012b5db3580efa6",
+  "size_bytes": 1683428,
+  "retrieved_at": "2026-10-25T12:55:11.136980+00:00",
+  "license": "SNAP Academic / Research Use",
+  "duration_semantic": "instantaneous",
+  "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\raw\\email_eu_core_temporal\\email-Eu-core-temporal.txt.gz"
+}

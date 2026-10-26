@@ -1,0 +1,44 @@
+# Real Datasets Configuration & Metadata Provenance (SC452 Group 5)
+
+datasets:
+  email_eu_core_temporal:
+    name: "email-Eu-core-temporal"
+    description: "SNAP email network from a large European research institution"
+    source_url: "https://snap.stanford.edu/data/email-Eu-core-temporal.txt.gz"
+    mirror_urls:
+      - "http://snap.stanford.edu/data/email-Eu-core-temporal.txt.gz"
+    format: "gzip_txt"
+    columns: ["src", "dst", "timestamp"]
+    delimiter: " "
+    has_header: false
+    license: "SNAP Academic / Research Use"
+    duration_semantic: "instantaneous" # No duration provided in raw log
+    undirected_for_static: true
+
+  college_msg:
+    name: "CollegeMsg"
+    description: "SNAP CollegeMsg temporal network of private messages on online social network"
+    source_url: "https://snap.stanford.edu/data/CollegeMsg.txt.gz"
+    mirror_urls:
+      - "http://snap.stanford.edu/data/CollegeMsg.txt.gz"
+    format: "gzip_txt"
+    columns: ["src", "dst", "timestamp"]
+    delimiter: " "
+    has_header: false
+    license: "SNAP Academic / Research Use"
+    duration_semantic: "instantaneous" # No duration provided in raw log
+    undirected_for_static: true
+
+  sociopatterns_invs15:
+    name: "SocioPatterns-InVS15"
+    description: "SocioPatterns face-to-face contact events in an office building (InVS15, 2015 2nd deployment)"
+    source_url: "http://www.sociopatterns.org/assets/data/workplace_InVS15_tij.dat.gz"
+    mirror_urls:
+      - "https://www.sociopatterns.org/assets/data/workplace_InVS15_tij.dat.gz"
+    format: "gzip_txt"
+    columns: ["timestamp", "src", "dst"]
+    delimiter: " "
+    has_header: false
+    license: "Creative Commons Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)"
+    duration_semantic: "interval" # 20-second active face-to-face contacts
+    undirected_for_static: true

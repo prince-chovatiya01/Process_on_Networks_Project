@@ -1,0 +1,19 @@
+{
+  "dataset_name": "CollegeMsg",
+  "total_raw_rows": 59835,
+  "missing_value_rows": 0,
+  "self_loop_rows": 0,
+  "duplicate_rows": 37,
+  "clean_event_count": 59798,
+  "unique_nodes": 1899,
+  "temporal_span": {
+    "t_min": 1082040961,
+    "t_max": 1098777142,
+    "span_seconds": 16736181
+  },
+  "duration_semantic": "instantaneous",
+  "assumptions": [
+    "Events represent instantaneous interaction points with no duration recorded in raw source."
+  ],
+  "is_valid": true
+}

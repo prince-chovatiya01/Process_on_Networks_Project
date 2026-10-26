@@ -1,0 +1,19 @@
+{
+  "dataset_name": "SocioPatterns-InVS15",
+  "total_raw_rows": 78249,
+  "missing_value_rows": 0,
+  "self_loop_rows": 0,
+  "duplicate_rows": 0,
+  "clean_event_count": 78249,
+  "unique_nodes": 217,
+  "temporal_span": {
+    "t_min": 28840,
+    "t_max": 1022380,
+    "span_seconds": 993540
+  },
+  "duration_semantic": "interval",
+  "assumptions": [
+    "Events represent active contact intervals with physical duration recorded."
+  ],
+  "is_valid": true
+}

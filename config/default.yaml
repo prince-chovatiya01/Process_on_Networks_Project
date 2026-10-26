@@ -1,0 +1,23 @@
+project:
+  name: "spm-networks"
+  group: "SC452 Group 5"
+  seed_base: 42
+  num_threads: -1
+
+paths:
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  synthetic_data_dir: "data/synthetic"
+  results_dir: "results"
+  figures_dir: "figures"
+  logs_dir: "logs"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+  to_console: true
+  to_file: true
+
+reproducibility:
+  deterministic: true
+  master_seed: 42

@@ -1,0 +1,13 @@
+{
+  "graph_id": "ba_n1000_m4",
+  "nodes": 1000,
+  "edges": 3984,
+  "parameters": {
+    "type": "BA",
+    "n": 1000,
+    "m": 4,
+    "seed": 52
+  },
+  "generated_at": "2026-10-25T12:54:24.510645+00:00",
+  "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\synthetic\\ba_n1000_m4\\edgelist.txt"
+}

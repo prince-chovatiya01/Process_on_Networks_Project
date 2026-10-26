@@ -1,0 +1,37 @@
+# Epidemic Simulation Configurations (SC452 Group 5 Sprint 2)
+
+models:
+  - "SIS"
+  - "SIR"
+
+parameters:
+  # Initial fraction of population infected
+  initial_infected_fraction: 0.05
+  min_initial_infected: 3
+
+  # Baseline recovery rate gamma (time unit normalization)
+  gamma: 1.0
+
+  # Tau = beta / gamma parameter grid for threshold exploration
+  # Configured either as absolute values or normalized relative to static spectral threshold tau_c = 1 / lambda_1(A)
+  tau_multipliers: [0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.5, 2.0, 2.5, 3.0]
+  tau_absolute_grid: [0.005, 0.01, 0.02, 0.05, 0.1, 0.15, 0.2, 0.3, 0.5, 0.8, 1.0]
+
+  # Number of independent stochastic Monte Carlo runs per parameter point
+  repetitions: 10
+  smoke_repetitions: 3
+
+  # Simulation limits
+  max_events_temporal: 500000
+  max_time_static: 50.0
+  static_dt: 0.05
+
+temporal_semantics:
+  instantaneous:
+    description: "Instantaneous email/private message contacts (email-Eu, CollegeMsg). No physical duration invented."
+    contact_prob_formula: "1 - exp(-beta)" # hazard over unit contact interaction
+  interval:
+    description: "Face-to-face active interval contacts (InVS15, 20s RFID contacts)."
+    contact_prob_formula: "1 - exp(-beta * (duration / 20.0))"
+  recovery:
+    inter_event: "Poisson recovery between successive event timestamps: 1 - exp(-gamma * dt_normalized)"

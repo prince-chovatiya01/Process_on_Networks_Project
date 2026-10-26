@@ -1,0 +1,14 @@
+{
+  "graph_id": "ws_n1000_k10",
+  "nodes": 1000,
+  "edges": 5000,
+  "parameters": {
+    "type": "WS",
+    "n": 1000,
+    "k": 10,
+    "p_rewire": 0.1,
+    "seed": 64
+  },
+  "generated_at": "2026-10-25T12:54:24.581258+00:00",
+  "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\synthetic\\ws_n1000_k10\\edgelist.txt"
+}

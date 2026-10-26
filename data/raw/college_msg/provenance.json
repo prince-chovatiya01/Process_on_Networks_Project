@@ -1,0 +1,12 @@
+{
+  "dataset_key": "college_msg",
+  "name": "CollegeMsg",
+  "status": "VERIFIED_EXISTING",
+  "source_url": "https://snap.stanford.edu/data/CollegeMsg.txt.gz",
+  "sha256": "50ae2d98ed3bad9ddb18dbd495a89e5e10cfb8f7e86932827db29fc41b41f9fa",
+  "size_bytes": 345339,
+  "retrieved_at": "2026-10-25T12:55:11.140530+00:00",
+  "license": "SNAP Academic / Research Use",
+  "duration_semantic": "instantaneous",
+  "file_path": "C:\\Users\\Prince Chovatiya\\OneDrive\\Desktop\\Process on networks project\\data\\raw\\college_msg\\CollegeMsg.txt.gz"
+}
