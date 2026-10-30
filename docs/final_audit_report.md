@@ -1,7 +1,8 @@
 # SC452 Group 5 — Final Scientific Audit & Research Report
 **Course:** SC452 Processes on Networks, Autumn 2026  
+**Group:** 5  
 **Project Title:** Does Aggregation Lie? Epidemic Thresholds on Temporal vs. Static Contact Networks  
-**Group 5 Members:**
+**Group Members:**
 - Tirth Gandhi (202301016)
 - Prince Chovatiya (202301067)
 - Nakul Patel (202301261)
