@@ -77,7 +77,14 @@ def simulate_static_gillespie(
 
     nodes = list(G.nodes())
     node_to_idx = {node: i for i, node in enumerate(nodes)}
-    adj = [np.array([node_to_idx[v] for v in G.neighbors(u)], dtype=np.int32) for u in nodes]
+
+    is_directed = G.is_directed()
+    if is_directed:
+        out_adj = [np.array([node_to_idx[v] for v in G.successors(u)], dtype=np.int32) for u in nodes]
+        in_adj = [np.array([node_to_idx[u] for u in G.predecessors(v)], dtype=np.int32) for v in nodes]
+    else:
+        out_adj = [np.array([node_to_idx[v] for v in G.neighbors(u)], dtype=np.int32) for u in nodes]
+        in_adj = out_adj
 
     # Initial state
     state = np.full(n, State.SUSCEPTIBLE, dtype=np.int8)
@@ -93,7 +100,7 @@ def simulate_static_gillespie(
     # Stored as encoded integer: (u * n + v)
     si_stubs = FastIndexedSet()
     for u in infected_set.items:
-        for v in adj[u]:
+        for v in out_adj[u]:
             if state[v] == State.SUSCEPTIBLE:
                 si_stubs.add(int(u * n + v))
 
@@ -143,11 +150,12 @@ def simulate_static_gillespie(
 
             # Update active stubs around v:
             # 1. Any stub pointing to v (w -> v) is no longer active because v is no longer susceptible!
-            for w in adj[v]:
+            for w in in_adj[v]:
                 if state[w] == State.INFECTED:
                     si_stubs.remove(int(w * n + v))
-                elif state[w] == State.SUSCEPTIBLE:
-                    # 2. As newly infected, v can now infect its susceptible neighbors w (v -> w)
+            # 2. As newly infected, v can now infect its susceptible out-neighbors w (v -> w)
+            for w in out_adj[v]:
+                if state[w] == State.SUSCEPTIBLE:
                     si_stubs.add(int(v * n + w))
 
             if len(infected_set) > peak_I:
@@ -163,17 +171,18 @@ def simulate_static_gillespie(
                 # Node v transitions I -> S
                 state[v] = State.SUSCEPTIBLE
                 # 1. v can no longer infect others: remove all (v -> w) stubs
-                for w in adj[v]:
+                for w in out_adj[v]:
                     if state[w] == State.SUSCEPTIBLE:
                         si_stubs.remove(int(v * n + w))
-                    elif state[w] == State.INFECTED:
-                        # 2. v is now susceptible, so infected neighbor w can infect v: add (w -> v) stub
+                # 2. v is now susceptible, so infected in-neighbor w can infect v: add (w -> v) stub
+                for w in in_adj[v]:
+                    if state[w] == State.INFECTED:
                         si_stubs.add(int(w * n + v))
             else:
                 # SIR: Node v transitions I -> R
                 state[v] = State.RECOVERED
                 # v can no longer infect others: remove all (v -> w) stubs
-                for w in adj[v]:
+                for w in out_adj[v]:
                     if state[w] == State.SUSCEPTIBLE:
                         si_stubs.remove(int(v * n + w))
 

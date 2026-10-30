@@ -25,14 +25,20 @@ def simulate_temporal_events(
     sample_dt: float = 0.5,
     src_col: str = "src_id",
     dst_col: str = "dst_id",
-    time_col: str = "timestamp"
+    time_col: str = "timestamp",
+    directed: bool = False
 ) -> SimulationRunResult:
     """
     Event-driven simulation of SIS / SIR on a chronological temporal contact sequence.
+    - Simultaneous timestamp batching: events occurring at the exact same timestamp
+      are evaluated synchronously. Newly infected individuals in a batch cannot
+      instantaneously transmit to others within the same timestamp, preventing
+      artificial multi-hop spreading cascades and ensuring row-permutation invariance.
     - Inter-event Poisson recovery: n_rec ~ Binomial(n_I, 1 - exp(-gamma * dt_norm))
     - Contact transmission probability:
       * Instantaneous: p_inf = 1 - exp(-beta)
       * Interval (with duration): p_inf = 1 - exp(-beta * (duration / 20.0))
+    - directed: if True, transmission only flows from src_id to dst_id.
     """
     rng = np.random.default_rng(seed)
     n = n_nodes
@@ -83,7 +89,8 @@ def simulate_temporal_events(
     peak_time = 0.0
 
     n_events = len(src_arr)
-    for idx in range(n_events):
+    idx = 0
+    while idx < n_events:
         if len(infected_set) == 0:
             break
 
@@ -93,7 +100,7 @@ def simulate_temporal_events(
         current_t_norm += delta_t_norm
         last_event_t = event_raw_t
 
-        # 1. Exact Binomial Poisson recovery between events
+        # 1. Exact Binomial Poisson recovery between distinct timestamps
         if delta_t_norm > 0.0 and len(infected_set) > 0 and gamma > 0.0:
             p_rec = min(1.0, 1.0 - np.exp(-gamma * delta_t_norm))
             n_I = len(infected_set)
@@ -103,7 +110,6 @@ def simulate_temporal_events(
                 n_rec = int(rng.binomial(n_I, p_rec))
 
             if n_rec > 0:
-                # Randomly pick n_rec infected individuals to recover
                 if n_rec >= n_I:
                     rec_nodes = list(infected_set.items)
                 else:
@@ -127,42 +133,62 @@ def simulate_temporal_events(
         if len(infected_set) == 0:
             break
 
-        # 2. Contact transmission at event
-        u = src_arr[idx]
-        v = dst_arr[idx]
+        # 2. Batch all events occurring at this exact raw timestamp
+        batch_end = idx
+        while batch_end < n_events and time_arr[batch_end] == event_raw_t:
+            batch_end += 1
 
-        if u < 0 or u >= n or v < 0 or v >= n:
-            continue
+        # Evaluate transmission across all contacts in this timestamp batch.
+        # Nodes becoming infected during this batch are staged in newly_infected
+        # and cannot infect other nodes during this exact same timestamp.
+        newly_infected = set()
+        for k in range(idx, batch_end):
+            u = src_arr[k]
+            v = dst_arr[k]
 
-        state_u = state[u]
-        state_v = state[v]
+            if u < 0 or u >= n or v < 0 or v >= n:
+                continue
 
-        # Check if pair is discordant
-        if (state_u == State.INFECTED and state_v == State.SUSCEPTIBLE) or \
-           (state_v == State.INFECTED and state_u == State.SUSCEPTIBLE):
+            state_u = state[u]
+            state_v = state[v]
 
-            target = v if state_u == State.INFECTED else u
+            can_infect = False
+            target = -1
 
-            if dur_arr is not None:
-                duration_factor = max(0.1, dur_arr[idx] / 20.0)
-                p_inf = 1.0 - np.exp(-beta * duration_factor)
+            if not directed:
+                # Undirected: u can infect v if u was already infected; or v can infect u
+                if state_u == State.INFECTED and state_v == State.SUSCEPTIBLE and v not in newly_infected:
+                    target = v
+                    can_infect = True
+                elif state_v == State.INFECTED and state_u == State.SUSCEPTIBLE and u not in newly_infected:
+                    target = u
+                    can_infect = True
             else:
-                p_inf = 1.0 - np.exp(-beta)
+                # Directed: only src (u) to dst (v)
+                if state_u == State.INFECTED and state_v == State.SUSCEPTIBLE and v not in newly_infected:
+                    target = v
+                    can_infect = True
 
-            if rng.random() < p_inf:
-                state[target] = State.INFECTED
-                infected_set.add(target)
-                if len(infected_set) > peak_I:
-                    peak_I = len(infected_set)
-                    peak_time = current_t_norm
+            if can_infect and target != -1:
+                if dur_arr is not None:
+                    duration_factor = max(0.1, dur_arr[k] / 20.0)
+                    p_inf = 1.0 - np.exp(-beta * duration_factor)
+                else:
+                    p_inf = 1.0 - np.exp(-beta)
 
-    # Ensure trajectory snapshots extend to time_scale_total even if extinction happened early
-    if record_trajectory:
-        while next_record_t <= time_scale_total:
-            times.append(float(next_record_t))
-            I_counts.append(len(infected_set))
-            R_counts.append(int(np.sum(state == State.RECOVERED)))
-            next_record_t += sample_dt
+                if rng.random() < p_inf:
+                    newly_infected.add(target)
+
+        # Simultaneously apply all infections occurring in this timestamp batch
+        for target in newly_infected:
+            state[target] = State.INFECTED
+            infected_set.add(target)
+
+        if len(infected_set) > peak_I:
+            peak_I = len(infected_set)
+            peak_time = current_t_norm
+
+        idx = batch_end
         if times[-1] < time_scale_total:
             times.append(float(time_scale_total))
             I_counts.append(len(infected_set))
