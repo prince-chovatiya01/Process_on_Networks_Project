@@ -92,7 +92,7 @@ pip install -e .
 
 ## 4. Execution Commands
 
-### Run Full Test Suite (22 Tests Passing)
+### Run Full Test Suite (30 Tests Passing)
 ```bash
 pytest tests/ -v
 ```
@@ -112,9 +112,18 @@ python scripts/run_experiments.py --dataset sociopatterns_invs15
 
 # Full run across all empirical datasets:
 python scripts/run_experiments.py
+
+# Verified node-removal experiments with independent random sets:
+python scripts/rerun_node_removal.py
 ```
 
-### 3. Synthetic Network Experiments & Heatmaps
+### 3. Temporal Reachability Gap & Aggregation Inflation Ratio (AIR)
+```bash
+# Compute TRG, AIR, and generate publication figure:
+python scripts/compute_reachability_and_air.py
+```
+
+### 4. Synthetic Network Experiments & Heatmaps
 ```bash
 # Smoke test across all 9 configurations:
 python scripts/run_synthetic_experiments.py --smoke
@@ -123,18 +132,11 @@ python scripts/run_synthetic_experiments.py --smoke
 python scripts/run_synthetic_experiments.py
 ```
 
-### 4. Compiling the IEEE Research Paper
-The complete paper is compiled at `paper/main.pdf` (strict 6-page IEEE format). To recompile using the included Tectonic engine or pdflatex:
+### 5. Compiling the IEEE Research Paper
+The complete paper is compiled at `paper/main.pdf` (strict 6-page IEEE format). To recompile using the included Tectonic engine:
 ```bash
-# Using local Tectonic engine:
 cd paper
 ..\tools\tectonic.exe main.tex
-
-# Or using standard pdflatex / Overleaf:
-pdflatex main
-bibtex main
-pdflatex main
-pdflatex main
 ```
 *The `paper/` directory is fully self-contained with its figures, bibliography, and `IEEEtran.cls`.*
 

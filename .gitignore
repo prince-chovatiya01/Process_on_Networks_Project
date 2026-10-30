@@ -35,3 +35,6 @@ paper/.tectonic/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# User-provided reference audit inputs
+New_revised/
